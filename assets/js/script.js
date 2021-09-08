@@ -56,7 +56,6 @@ if (integer >= 128) {
 console.log("This is the number of digits you asked for " + integer)
 }
 
-passwordLength ();
 //add if check to see if it was a number between 8 - 128
 
 
@@ -88,11 +87,11 @@ case 3:
 
 picker()
 
-var test = 0
+//var test = 0
 
-for (i=0; i > integer; i++) {
-console.log(i)
-}
+//for (i=0; i > integer; i++) {
+//console.log(i)
+//}
 
 
 
@@ -102,12 +101,13 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  passwordLength();
+  var password = 42;
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
+//integer used to be generatePassword() password
 }
 
 // Add event listener to generate button
-//generateBtn.addEventListener("click", writePassword)
+generateBtn.addEventListener("click", writePassword)
