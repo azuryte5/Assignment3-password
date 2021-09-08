@@ -36,8 +36,29 @@ console.log("This is the number of uppercase letters "+ list.LETTERS.length);
 console.log("This is a random uppercase character " + list.LETTERS[Math.floor(Math.random()*list.letters.length)]);
 
 // I will need a function to count how many characters to string
-var integer = window.prompt("How many numbers to you want?")
-console.log("Thiis is the number of digits you asked for " + integer)
+var passwordLength = function () {
+  var integer = window.prompt("How many numbers to you want?")
+  
+if (integer === "" || integer === null) {
+  window.alert("You need to put in a number, try again");
+  return passwordLength();
+}
+
+if (integer <= 7) {
+  window.alert("You password is too short, try again");
+  return passwordLength();
+}
+
+if (integer >= 128) {
+  window.alert("You password is too long, try again");
+  return passwordLength();
+}
+console.log("This is the number of digits you asked for " + integer)
+}
+
+passwordLength ();
+//add if check to see if it was a number between 8 - 128
+
 
 //I defined picker and it will spit out one option every time used. Right now it is either one of 4 cases
 // later I will have to change that 4 to the correct character for that space
@@ -73,7 +94,7 @@ for (i=0; i > integer; i++) {
 console.log(i)
 }
 
-//add if check to see if it was a number between 8 - 128
+
 
 
 // Get references to the #generate element
