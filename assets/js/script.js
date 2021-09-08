@@ -56,6 +56,7 @@ if (integer >= 128) {
 console.log("This is the number of digits you asked for " + integer)
 }
 
+
 //add if check to see if it was a number between 8 - 128
 
 
@@ -66,26 +67,56 @@ var picker = function(){
 var random = Math.floor(Math.random()*4)
 console.log("This is the case number " + random)
 
+var number =window.confirm("Do you want numbers in your password?");
+if (number==true){
+  console.log("Yes, I want numbers.")
+} else {
+  console.log("Nah, I don't need numbers")
+}
+var special=window.confirm("Do you want special characters in your password?");
+if (special==true){
+  console.log("Yes, I want special characters.")
+} else {
+  console.log("Nah, I don't need special")
+}
+var letters=window.confirm("Do you want lower case letters in your password?");
+if (letters==true){
+  console.log("Yes, I want lowercase letters.")
+} else {
+  console.log("Nah, I don't need lowercase letters")
+}
+var LETTERS=window.confirm("Do you want upper case letters in your password?");
+if (LETTERS==true){
+  console.log("Yes, I want uppercase letters.")
+} else {
+  console.log("Nah, I don't need uppercase letters")
+}
+
+if (number==false && special==false && letters==false && LETTERS==false){
+  console.log("Why would you pick nothing?")
+  window.alert("Why would you pick nothing? Try again")
+  return picker()
+}
 switch (random){
 case 0:
-  console.log(list.numbers[Math.floor(Math.random()*list.numbers.length)])
+  console.log("Your random character was " + list.numbers[Math.floor(Math.random()*list.numbers.length)])
   break;
   
 case 1:
-  console.log(list.special[Math.floor(Math.random()*list.special.length)])
+  console.log("Your random character was " + list.special[Math.floor(Math.random()*list.special.length)])
   break;
 
 case 2:
-  console.log(list.letters[Math.floor(Math.random()*list.letters.length)])
+  console.log("Your random character was " + list.letters[Math.floor(Math.random()*list.letters.length)])
   break;
 
 case 3:
-  console.log(list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)])
+  console.log("Your random character was " + list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)])
   break;
 }
 }
 
-picker()
+
 
 //var test = 0
 
@@ -102,6 +133,7 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   passwordLength();
+  picker();
   var password = 42;
   var passwordText = document.querySelector("#password");
 
