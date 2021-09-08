@@ -26,18 +26,18 @@ var list = {
 }
 
 // This show that we can pick a random character from the array
-console.log(list.numbers.length);
-console.log(list.numbers[Math.floor(Math.random()*list.numbers.length)]);
-console.log(list.special.length);
-console.log(list.special[Math.floor(Math.random()*list.special.length)]);
-console.log(list.letters.length);
-console.log(list.letters[Math.floor(Math.random()*list.letters.length)]);
-console.log(list.LETTERS.length);
-console.log(list.LETTERS[Math.floor(Math.random()*list.letters.length)]);
+console.log("This is the number of possible digits " + list.numbers.length);
+console.log("This is a random number generated " + list.numbers[Math.floor(Math.random()*list.numbers.length)]);
+console.log("This is the number of possible special characters " + list.special.length);
+console.log("This is a random special character " + list.special[Math.floor(Math.random()*list.special.length)]);
+console.log("This is the number of possible lowercase letters " + list.letters.length);
+console.log("This is a random lower case letter "+ list.letters[Math.floor(Math.random()*list.letters.length)]);
+console.log("This is the number of uppercase letters "+ list.LETTERS.length);
+console.log("This is a random uppercase character " + list.LETTERS[Math.floor(Math.random()*list.letters.length)]);
 
 // I will need a function to count how many characters to string
 var integer = window.prompt("How many numbers to you want?")
-console.log(integer)
+console.log("Thiis is the number of digits you asked for " + integer)
 
 //I defined picker and it will spit out one option every time used. Right now it is either one of 4 cases
 // later I will have to change that 4 to the correct character for that space
