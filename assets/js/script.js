@@ -1,6 +1,5 @@
 // 1 when I click the button I am asked a series of prompts
 
-
 // 2 when prompted with password questions, user selects what they want to see
 
 // 3 When prompted for the password length, i choose between 8-128 characters
@@ -11,97 +10,70 @@
 
 // 6 when all prompts are answered a password is generated that match the selected critria
 
-//7 when there is a password it is given to the user either in box or as an alert.
+// 7 when there is a password it is given to the user either in box or as an alert.
 
 
 
 // listspecial = window.confirm("Do you want special characters?");
 
-if (special=true) {
-  var pool = ("!" + "@" + "#" + "$"+ "%"+ "^"+ "&"+ "*"+ "("+ ")"+ "-") 
-}
 
-
-//console.log(pool)
-
+// My list of arrays organized slightly, some special characters do not work
 var list = {
-  special: ["!", "@", "#", "$", "%", "&", "*", "(", ")"],
-  numbers: [1,2,3,4,5,6,7,8,9,0],
-  letters:["a", "b" , "c", "d", "e", "f", "g","h", "i","j"],
+  numbers: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  special: ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", "<", "=", ">", "?", "@", "^", "|"],
+  letters: ["a", "b" , "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z"],
+  LETTERS: ["A", "B" , "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y","Z"],
 }
 
-var randomNumber = function(min,max) {
-  var value = Math.floor(Math.random() * (max - min) + min);
-}
+// This show that we can pick a random character from the array
+console.log(list.numbers.length);
+console.log(list.numbers[Math.floor(Math.random()*list.numbers.length)]);
+console.log(list.special.length);
+console.log(list.special[Math.floor(Math.random()*list.special.length)]);
+console.log(list.letters.length);
+console.log(list.letters[Math.floor(Math.random()*list.letters.length)]);
+console.log(list.LETTERS.length);
+console.log(list.LETTERS[Math.floor(Math.random()*list.letters.length)]);
 
-var questions = ["Do you want numbers?","Do you want special characters?", "Do you want uppercase letters?", "Do you want lowercase letters?"]
-console.log(questions.length)
-
-for (i=0; i > 4; i++) {
-window.prompt(questions[i])
-}
-
-counter = 0 //if this works add reset
-//var asknumber = window.confirm("Do you want numbers?");
-//if (asknumber=true) {
-//  var counter = counter + 1;  
-//} else { 
-//  counter = counter + 0;
-//}
-// if counter stays at 0 return to start to try again
-console.log(counter)
-
+// I will need a function to count how many characters to string
 var integer = window.prompt("How many numbers to you want?")
 console.log(integer)
 
+//I defined picker and it will spit out one option every time used. Right now it is either one of 4 cases
+// later I will have to change that 4 to the correct character for that space
+
 var picker = function(){
+var random = Math.floor(Math.random()*4)
+console.log("This is the case number " + random)
+
+switch (random){
+case 0:
+  console.log(list.numbers[Math.floor(Math.random()*list.numbers.length)])
+  break;
+  
+case 1:
+  console.log(list.special[Math.floor(Math.random()*list.special.length)])
+  break;
+
+case 2:
+  console.log(list.letters[Math.floor(Math.random()*list.letters.length)])
+  break;
+
+case 3:
+  console.log(list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)])
+  break;
+}
+}
+
+picker()
+
+var test = 0
 
 for (i=0; i > integer; i++) {
-  //picker(counter)
-  var step = randomNumber(0,9);
-
+console.log(i)
 }
-
-// picker(counter) first define function and then this will pick a character to spit out
-
-}
-
-// add characters to be uppercase or lower case . What If i charset [n] pull one and add it to string?
-//this will have to be a while loop, conditional to upper and lower case.
-
-
 
 //add if check to see if it was a number between 8 - 128
-
-// I need a counter variable for the randomness 0,1,2,3 in loop of picking a number I need to determine which number it could be
-// then add it to the string. start with numbers
-var picker = function(){
- //this will choose which character to spit out 
-}
-
-for (i = 0; i > integer; i++){
-var step = Math.random(0,0)
-console.log(step)
-
-switch (step) {
-  case 0:
-    var entry = Math.floor(Math.random()*10)
-  console.log(entry)
-}
-}
-console.log(step)
-console.log(entry)
-
-
-
-//change to random. This takes values from correct position
-// console.log(list.special[random])
-// console.log(list.numbers[random])
-// console.log(list.letters[random])
-// integer is going to have to be the # of digits in the loop and charcter
-// I'll have to determine how long to make the loop
-//Which charcter type it is going to be (random)
-// the slot and then string them all together
 
 
 // Get references to the #generate element
