@@ -26,22 +26,19 @@ var list = {
 }
 
 // This show that we can pick a random character from the array
-console.log("This is the number of possible digits " + list.numbers.length);
-console.log("This is a random number generated " + list.numbers[Math.floor(Math.random()*list.numbers.length)]);
-console.log("This is the number of possible special characters " + list.special.length);
-console.log("This is a random special character " + list.special[Math.floor(Math.random()*list.special.length)]);
-console.log("This is the number of possible lowercase letters " + list.letters.length);
-console.log("This is a random lower case letter "+ list.letters[Math.floor(Math.random()*list.letters.length)]);
-console.log("This is the number of uppercase letters "+ list.LETTERS.length);
-console.log("This is a random uppercase character " + list.LETTERS[Math.floor(Math.random()*list.letters.length)]);
+//console.log("This is the number of possible digits " + list.numbers.length);
+//console.log("This is a random number generated " + list.numbers[Math.floor(Math.random()*list.numbers.length)]);
+//console.log("This is the number of possible special characters " + list.special.length);
+//console.log("This is a random special character " + list.special[Math.floor(Math.random()*list.special.length)]);
+//console.log("This is the number of possible lowercase letters " + list.letters.length);
+//console.log("This is a random lower case letter "+ list.letters[Math.floor(Math.random()*list.letters.length)]);
+//console.log("This is the number of uppercase letters "+ list.LETTERS.length);
+//console.log("This is a random uppercase character " + list.LETTERS[Math.floor(Math.random()*list.letters.length)]);
 
 // I will need a function to count how many characters to string
 var passwordLength = function () {
   var prompt = window.prompt("How many numbers to you want?")
- 
   var integer = parseInt(prompt, 10)
-  console.log(integer)
-  console.log(typeof integer)
 // Need to add error if non-numbers are submitted  
 if (prompt === ""|| isNaN(integer)  ||integer === undefined ) {
   window.alert("You need to put in a number, try again");
@@ -61,13 +58,11 @@ console.log("This is the number of digits you asked for " + integer)
 }
 
 
-//add if check to see if it was a number between 8 - 128
-
 
 //I defined picker and it will spit out one option every time used. Right now it is either one of 4 cases
 // later I will have to change that 4 to the correct character for that space
 
-var picker = function(){
+var picker = function(count){
 var count = 0
 // prompts of the 4 questions. error if all false
 var number =window.confirm("Do you want numbers in your password?");
@@ -98,58 +93,71 @@ if (LETTERS==true){
 } else {
   console.log("Nah, I don't need uppercase letters")
 }
-
-if (number==false && special==false && letters==false && LETTERS==false){
+console.log(count)
+if (count==0){
   console.log("Why would you pick nothing?")
   window.alert("Why would you pick nothing? Try again")
   return picker()
 }
-console.log("The logic count is " +count)
+
+return count
+
 //if count is 4. Each character has a random chance to be one of 4 types equally.
-var random = Math.floor(Math.random()*count)
-//if count is 1. run this soon to be function to reset random to new value now.
-if (count=1){
-  random = pickerOne()
 }
-console.log("This is the case number " + random)
+
+var pickFour = function () {  
+console.log("All four options were chosen!")
+answer = 0
+random = Math.floor(Math.random()* 4) 
 switch (random){
 case 0:
-  console.log("Your random character was " + list.numbers[Math.floor(Math.random()*list.numbers.length)])
+  console.log("case number")
+  answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
+  return answer
   break;
   
 case 1:
-  console.log("Your random character was " + list.special[Math.floor(Math.random()*list.special.length)])
+  console.log("case special")
+  answer = list.special[Math.floor(Math.random()*list.special.length)]
+  return answer
   break;
 
 case 2:
-  console.log("Your random character was " + list.letters[Math.floor(Math.random()*list.letters.length)])
+  console.log("case letter")
+  answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+  return answer
   break;
 
 case 3:
-  console.log("Your random character was " + list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)])
+  console.log("case LETTER")
+  answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+  return answer
   break;
 }
+
 }
 
-var pickerOne = function () {
+
+var pickerOne = function (switchNumber) {
   if (number==true && special == false && letters == false && LETTERS==false){
-    random = 0
-    return random
+    switchNumber = 0
+    return switchNumber
   }
   if (number==false && special == true && letters == false && LETTERS==false){
-    random = 1
-    return random
+    switchNumber = 1
+    return switchNumber
   }
   if (number==false && special == false && letters == true && LETTERS==false){
-    random = 2
-    return random
+    switchNumber = 2
+    return switchNumber
   }
   if (number==false && special == false && letters == false && LETTERS==true){
-    random = 3
-    return random
+    switchNumber = 3
+    return switchNumber
   }
 
 }
+
 
 //var test = 0
 
@@ -166,7 +174,13 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   passwordLength();
-  picker();
+  
+  //The picker will say what the count is
+ var questionSorter= picker();
+ if (questionSorter==4){
+    character= pickFour()
+    console.log("The character was " + character)
+ }
   var password = 42;
   var passwordText = document.querySelector("#password");
 
