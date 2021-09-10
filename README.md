@@ -2,7 +2,7 @@
 Github application: https://azuryte5.github.io/Assignment3-password/
 Github repository: https://github.com/azuryte5/Assignment3-password
 
-<img src="blob/images/password-challenge.png" width="200">
+<img src="azuryte5/Assignment3-password/blob/main/assets/images/password-challenge.png" width="200">
 
 # unique comments
 This challenge took me over 20hours to understand, digest and compute. I understood the deciding between 16 possible user interactions was the 
