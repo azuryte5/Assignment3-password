@@ -1,22 +1,3 @@
-// 1 when I click the button I am asked a series of prompts
-
-// 2 when prompted with password questions, user selects what they want to see
-
-// 3 When prompted for the password length, i choose between 8-128 characters
-
-// 4 when asked what types of characters,user picks among lowercase, uppercase, numberic, special characters " !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~" https://owasp.org/www-community/password-special-characters
-
-// 5 when input is given user is returned with at least 1 character of each selected type
-
-// 6 when all prompts are answered a password is generated that match the selected critria
-
-// 7 when there is a password it is given to the user either in box or as an alert.
-
-
-
-// listspecial = window.confirm("Do you want special characters?");
-
-
 // My list of arrays organized slightly, some special characters do not work
 var list = {
   numbers: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
@@ -37,9 +18,9 @@ var list = {
 
 // I will need a function to count how many characters to string
 var passwordLength = function () {
-  var prompt = window.prompt("How many numbers to you want?")
+  var prompt = window.prompt("How long do you want your password to be (Between 8 - 128 Characters)?")
   var integer = parseInt(prompt, 10)
-// Need to add error if non-numbers are submitted  
+// if the password is not a number, empty too long or too short return password length
 if (prompt === ""|| isNaN(integer)  ||integer === undefined ) {
   window.alert("You need to put in a number, try again");
   return passwordLength();
@@ -50,63 +31,71 @@ if (integer <= 7) {
   return passwordLength();
 }
 
-if (integer >= 128) {
+if (integer >= 129) {
   window.alert("Your password is too long, try again");
   return passwordLength();
 }
-console.log("This is the number of digits you asked for " + integer)
+
+else {
+  return integer
 }
 
-
+}
 
 //I defined picker and it will spit out one option every time used. Right now it is either one of 4 cases
 // later I will have to change that 4 to the correct character for that space
+// Where does this go? I need organize my flow of functions better 
+// This is moved to the bottom but I think is wrong.
 
-var picker = function(count){
-var count = 0
-// prompts of the 4 questions. error if all false
-var number =window.confirm("Do you want numbers in your password?");
-if (number==true){
-  console.log("Yes, I want numbers.")
-  count++
-} else {
-  console.log("Nah, I don't need numbers")
-}
-var special=window.confirm("Do you want special characters in your password?");
-if (special==true){
-  console.log("Yes, I want special characters.")
-  count++
-} else {
-  console.log("Nah, I don't need special")
-}
-var letters=window.confirm("Do you want lower case letters in your password?");
-if (letters==true){
-  console.log("Yes, I want lowercase letters.")
-  count++
-} else {
-  console.log("Nah, I don't need lowercase letters")
-}
-var LETTERS=window.confirm("Do you want upper case letters in your password?");
-if (LETTERS==true){
-  console.log("Yes, I want uppercase letters.")
-  count++
-} else {
-  console.log("Nah, I don't need uppercase letters")
-}
-console.log(count)
-if (count==0){
-  console.log("Why would you pick nothing?")
-  window.alert("Why would you pick nothing? Try again")
-  return picker()
-}
+// var picker = function(count, number, special, letters, LETTERS){
 
-return count
-
+// // prompts of the 4 questions. error if all false
+// var number =window.confirm("Do you want numbers in your password?");
+// if (number==true){
+//   console.log("Yes, I want numbers.")
+//   count++
+//   return number
+// } else {
+//   console.log("Nah, I don't need numbers")
+// }
+// var special=window.confirm("Do you want special characters in your password?");
+// if (special==true){
+//   console.log("Yes, I want special characters.")
+//   count++
+//   return special
+// } else {
+//   console.log("Nah, I don't need special")
+// }
+// var letters=window.confirm("Do you want lower case letters in your password?");
+// if (letters==true){
+//   console.log("Yes, I want lowercase letters.")
+//   count++
+//   return letters
+// } else {
+//   console.log("Nah, I don't need lowercase letters")
+// }
+// var LETTERS=window.confirm("Do you want upper case letters in your password?");
+// if (LETTERS==true){
+//   console.log("Yes, I want uppercase letters.")
+//   count++
+//   return LETTERS
+// } else {
+//   console.log("Nah, I don't need uppercase letters")
+// }
+// console.log("I confirmed this many times: "+ count)
+// if (count==0){
+//   console.log("Why would you pick nothing?")
+//   window.alert("Why would you pick nothing? Try again")
+//   return picker()
+// }
+// return count
+//}?
 //if count is 4. Each character has a random chance to be one of 4 types equally.
-}
 
+// pickFour will return a random character from all four prompts if applicable
+// I think i need to tailor it to pick a random case and then have a seperate function that spits a number! this is too much at once
 var pickFour = function () {  
-console.log("All four options were chosen!")
+//console.log("All four options were chosen!")
 answer = 0
 random = Math.floor(Math.random()* 4) 
 switch (random){
@@ -134,11 +123,10 @@ case 3:
   return answer
   break;
 }
-
 }
-
-
-var pickerOne = function (switchNumber) {
+// This actually works. If count is one, this function will determine which case # to use
+var pickOne = function (number, special, letters, LETTERS) {
+  console.log("Pick one of either" + number + special + letters + LETTERS)
   if (number==true && special == false && letters == false && LETTERS==false){
     switchNumber = 0
     return switchNumber
@@ -155,15 +143,9 @@ var pickerOne = function (switchNumber) {
     switchNumber = 3
     return switchNumber
   }
-
 }
 
 
-//var test = 0
-
-//for (i=0; i > integer; i++) {
-//console.log(i)
-//}
 
 
 
@@ -173,15 +155,70 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  passwordLength();
+  passwordSize = passwordLength();
+  count = 0
+  var number =window.confirm("Do you want numbers in your password?");
+  if (number==true){
+    console.log("Yes, I want numbers.")
+    count++
+  } else {
+    console.log("Nah, I don't need numbers")
+  }
+  var special=window.confirm("Do you want special characters in your password?");
+  if (special==true){
+    console.log("Yes, I want special characters.")
+    count++
+  } else {
+    console.log("Nah, I don't need special")
+  }
+  var letters=window.confirm("Do you want lower case letters in your password?");
+  if (letters==true){
+    console.log("Yes, I want lowercase letters.")
+    count++
   
-  //The picker will say what the count is
- var questionSorter= picker();
- if (questionSorter==4){
-    character= pickFour()
-    console.log("The character was " + character)
- }
-  var password = 42;
+  } else {
+    console.log("Nah, I don't need lowercase letters")
+  }
+  var LETTERS=window.confirm("Do you want upper case letters in your password?");
+  if (LETTERS==true){
+    console.log("Yes, I want uppercase letters.")
+    count++
+   
+  } else {
+    console.log("Nah, I don't need uppercase letters")
+  }
+  console.log("I confirmed this many times: "+ count)
+  if (count==0){
+    console.log("Why would you pick nothing?")
+    window.alert("Why would you pick nothing? Try again")
+    return passwordLength()
+  }
+//This actually works test+=character. change character to actual random character try pickfour first.
+// var character = 1;
+// test = ""
+// while (character <= passwordSize-1 ){
+//   character += 1;
+//   test +=character
+//   console.log(test)
+// }
+var selector= ""
+var repeater=0
+var password= ""
+while (repeater<= passwordSize) {
+  
+  repeater+=1
+  if (count == 4){
+    selector= pickFour()
+    console.log("The character was " + selector);
+    password +=selector;
+    console.log(password);   
+} 
+//  if (count == 1) {
+//    switchNumber= pickOne(number, special, letters, LETTERS)
+//    console.log("Switch number is " + switchNumber)
+
+//  }
+}
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
