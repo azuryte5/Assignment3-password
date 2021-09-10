@@ -41,38 +41,6 @@ else {
 }
 }
 
-// pickFour will return a random character from all four prompts if applicable
-// I think i need to tailor it to pick a random case and then have a seperate function that spits a number! this is too much at once
-var pickFour = function () {  
-//console.log("All four options were chosen!")
-answer = 0
-random = Math.floor(Math.random()* 4) 
-switch (random){
-case 0:
-  console.log("case number")
-  answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
-  return answer
-  break;
-  
-case 1:
-  console.log("case special")
-  answer = list.special[Math.floor(Math.random()*list.special.length)]
-  return answer
-  break;
-
-case 2:
-  console.log("case letter")
-  answer = list.letters[Math.floor(Math.random()*list.letters.length)]
-  return answer
-  break;
-
-case 3:
-  console.log("case LETTER")
-  answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
-  return answer
-  break;
-}
-}
 // This actually works. If count is one, this function will determine which case # to use
 var pickOne = function (number, special, letters, LETTERS) {
   console.log("Pick one of either" + number + special + letters + LETTERS)
@@ -93,6 +61,7 @@ var pickOne = function (number, special, letters, LETTERS) {
     return answer
   }
 }
+
 
 var pickTwo = function (number, special, letters, LETTERS) {
 var random = 0  
@@ -163,7 +132,94 @@ var random = 0
     return answer
   }}
 }
+var pickThree = function (number, special, letters, LETTERS) {
+  console.log("Pick one of either" + number + special + letters + LETTERS)
+  if (number==true && special == true && letters == true && LETTERS==false){
+  random = Math.floor(Math.random()*3)
+  console.log(random)
+  switch(random){
+  case 0:answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
+  return answer;
+  break;
+  case 1:answer = list.special[Math.floor(Math.random()*list.special.length)]
+  return answer;
+  break;
+  case 2:answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+  return answer;
+  }}
+  if (number==true && special == true && letters == false && LETTERS==true){
+  random = Math.floor(Math.random()*3)
+  console.log(random)
+  switch(random){
+  case 0:answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
+  return answer;
+  break;
+  case 1:answer = list.special[Math.floor(Math.random()*list.special.length)]
+  return answer;
+  break;
+  case 2:answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+  return answer;
+  }}
+  if (number==false && special == true && letters == true && LETTERS==true){
+  random = Math.floor(Math.random()*3)
+  console.log(random)
+  switch(random){
+  case 0:answer = list.special[Math.floor(Math.random()*list.special.length)]
+  return answer;
+  break;
+  case 1:answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+  return answer;
+  break;
+  case 2:answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+  return answer;
+  }}
+  if (number== true && special == false && letters == true && LETTERS==true){
+  random = Math.floor(Math.random()*3)
+  console.log(random)
+  switch(random){
+  case 0:answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
+  return answer;
+  break;
+  case 1:answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+  return answer;
+  break;
+  case 2:answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+  return answer;
+    }}
+}
 
+// pickFour will return a random character from all four prompts if applicable
+// I think i need to tailor it to pick a random case and then have a seperate function that spits a number! this is too much at once
+var pickFour = function () {  
+  //console.log("All four options were chosen!")
+  answer = 0
+  random = Math.floor(Math.random()* 4) 
+  switch (random){
+  case 0:
+    console.log("case number")
+    answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
+    return answer
+    break;
+    
+  case 1:
+    console.log("case special")
+    answer = list.special[Math.floor(Math.random()*list.special.length)]
+    return answer
+    break;
+  
+  case 2:
+    console.log("case letter")
+    answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+    return answer
+    break;
+  
+  case 3:
+    console.log("case LETTER")
+    answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+    return answer
+    break;
+  }
+  }
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -226,16 +282,18 @@ while (repeater<= passwordSize) {
     console.log("The character was " + selector);
     password +=selector;
     console.log(password);}
+
   if (count == 2) {
     selector=pickTwo(number, special, letters, LETTERS);
     console.log("The character was " + selector);
     password +=selector;
     console.log(password);}
-  // if (count == 3) {
-  //   selector=pickThree(number, special, letters, LETTERS);
-  //   console.log("The character was " + selector);
-  //   password +=selector;
-  //   console.log(password);}
+
+  if (count == 3) {
+  selector=pickThree(number, special, letters, LETTERS);
+  console.log("The character was " + selector);
+  password +=selector;
+  console.log(password);}
 
   if (count == 4){
     selector= pickFour();
