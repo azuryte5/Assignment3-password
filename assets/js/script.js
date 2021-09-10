@@ -37,20 +37,24 @@ console.log("This is a random uppercase character " + list.LETTERS[Math.floor(Ma
 
 // I will need a function to count how many characters to string
 var passwordLength = function () {
-  var integer = window.prompt("How many numbers to you want?")
-  
-if (integer === "" || integer === null) {
+  var prompt = window.prompt("How many numbers to you want?")
+ 
+  var integer = parseInt(prompt, 10)
+  console.log(integer)
+  console.log(typeof integer)
+// Need to add error if non-numbers are submitted  
+if (prompt === ""|| isNaN(integer)  ||integer === undefined ) {
   window.alert("You need to put in a number, try again");
   return passwordLength();
 }
 
 if (integer <= 7) {
-  window.alert("You password is too short, try again");
+  window.alert("Your password is too short, try again");
   return passwordLength();
 }
 
 if (integer >= 128) {
-  window.alert("You password is too long, try again");
+  window.alert("Your password is too long, try again");
   return passwordLength();
 }
 console.log("This is the number of digits you asked for " + integer)
@@ -64,30 +68,33 @@ console.log("This is the number of digits you asked for " + integer)
 // later I will have to change that 4 to the correct character for that space
 
 var picker = function(){
-var random = Math.floor(Math.random()*4)
-console.log("This is the case number " + random)
-
+var count = 0
+// prompts of the 4 questions. error if all false
 var number =window.confirm("Do you want numbers in your password?");
 if (number==true){
   console.log("Yes, I want numbers.")
+  count++
 } else {
   console.log("Nah, I don't need numbers")
 }
 var special=window.confirm("Do you want special characters in your password?");
 if (special==true){
   console.log("Yes, I want special characters.")
+  count++
 } else {
   console.log("Nah, I don't need special")
 }
 var letters=window.confirm("Do you want lower case letters in your password?");
 if (letters==true){
   console.log("Yes, I want lowercase letters.")
+  count++
 } else {
   console.log("Nah, I don't need lowercase letters")
 }
 var LETTERS=window.confirm("Do you want upper case letters in your password?");
 if (LETTERS==true){
   console.log("Yes, I want uppercase letters.")
+  count++
 } else {
   console.log("Nah, I don't need uppercase letters")
 }
@@ -97,6 +104,14 @@ if (number==false && special==false && letters==false && LETTERS==false){
   window.alert("Why would you pick nothing? Try again")
   return picker()
 }
+console.log("The logic count is " +count)
+//if count is 4. Each character has a random chance to be one of 4 types equally.
+var random = Math.floor(Math.random()*count)
+//if count is 1. run this soon to be function to reset random to new value now.
+if (count=1){
+  random = pickerOne()
+}
+console.log("This is the case number " + random)
 switch (random){
 case 0:
   console.log("Your random character was " + list.numbers[Math.floor(Math.random()*list.numbers.length)])
@@ -116,7 +131,25 @@ case 3:
 }
 }
 
+var pickerOne = function () {
+  if (number==true && special == false && letters == false && LETTERS==false){
+    random = 0
+    return random
+  }
+  if (number==false && special == true && letters == false && LETTERS==false){
+    random = 1
+    return random
+  }
+  if (number==false && special == false && letters == true && LETTERS==false){
+    random = 2
+    return random
+  }
+  if (number==false && special == false && letters == false && LETTERS==true){
+    random = 3
+    return random
+  }
 
+}
 
 //var test = 0
 
