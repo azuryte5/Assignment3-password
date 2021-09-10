@@ -307,25 +307,25 @@ while (repeater<= passwordSize) {
   repeater+=1
   if (count == 1) {
     selector=pickOne(number, special, letters, LETTERS);
-    console.log("The character was " + selector);
+    //console.log("The character was " + selector);
     password +=selector;
     console.log(password);}
 
   if (count == 2) {
     selector=pickTwo(number, special, letters, LETTERS);
-    console.log("The character was " + selector);
+    //console.log("The character was " + selector);
     password +=selector;
     console.log(password);}
 
   if (count == 3) {
   selector=pickThree(number, special, letters, LETTERS);
-  console.log("The character was " + selector);
+  //console.log("The character was " + selector);
   password +=selector;
   console.log(password);}
 
   if (count == 4){
     selector= pickFour();
-    console.log("The character was " + selector);
+    //console.log("The character was " + selector);
     password +=selector;
     console.log(password);} 
 }  
