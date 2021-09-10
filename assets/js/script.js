@@ -39,58 +39,7 @@ if (integer >= 129) {
 else {
   return integer
 }
-
 }
-
-//I defined picker and it will spit out one option every time used. Right now it is either one of 4 cases
-// later I will have to change that 4 to the correct character for that space
-// Where does this go? I need organize my flow of functions better 
-// This is moved to the bottom but I think is wrong.
-
-// var picker = function(count, number, special, letters, LETTERS){
-
-// // prompts of the 4 questions. error if all false
-// var number =window.confirm("Do you want numbers in your password?");
-// if (number==true){
-//   console.log("Yes, I want numbers.")
-//   count++
-//   return number
-// } else {
-//   console.log("Nah, I don't need numbers")
-// }
-// var special=window.confirm("Do you want special characters in your password?");
-// if (special==true){
-//   console.log("Yes, I want special characters.")
-//   count++
-//   return special
-// } else {
-//   console.log("Nah, I don't need special")
-// }
-// var letters=window.confirm("Do you want lower case letters in your password?");
-// if (letters==true){
-//   console.log("Yes, I want lowercase letters.")
-//   count++
-//   return letters
-// } else {
-//   console.log("Nah, I don't need lowercase letters")
-// }
-// var LETTERS=window.confirm("Do you want upper case letters in your password?");
-// if (LETTERS==true){
-//   console.log("Yes, I want uppercase letters.")
-//   count++
-//   return LETTERS
-// } else {
-//   console.log("Nah, I don't need uppercase letters")
-// }
-// console.log("I confirmed this many times: "+ count)
-// if (count==0){
-//   console.log("Why would you pick nothing?")
-//   window.alert("Why would you pick nothing? Try again")
-//   return picker()
-// }
-// return count
-//}?
-//if count is 4. Each character has a random chance to be one of 4 types equally.
 
 // pickFour will return a random character from all four prompts if applicable
 // I think i need to tailor it to pick a random case and then have a seperate function that spits a number! this is too much at once
@@ -128,27 +77,92 @@ case 3:
 var pickOne = function (number, special, letters, LETTERS) {
   console.log("Pick one of either" + number + special + letters + LETTERS)
   if (number==true && special == false && letters == false && LETTERS==false){
-    switchNumber = 0
-    return switchNumber
+  answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
+  return answer
   }
   if (number==false && special == true && letters == false && LETTERS==false){
-    switchNumber = 1
-    return switchNumber
+    answer = list.special[Math.floor(Math.random()*list.special.length)]
+  return answer
   }
   if (number==false && special == false && letters == true && LETTERS==false){
-    switchNumber = 2
-    return switchNumber
+    answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+  return answer
   }
   if (number==false && special == false && letters == false && LETTERS==true){
-    switchNumber = 3
-    return switchNumber
+    answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+    return answer
   }
 }
 
+var pickTwo = function (number, special, letters, LETTERS) {
+var random = 0  
+  console.log("Pick from two of either" + number + special + letters + LETTERS)
+  if (number==true && special == true && letters == false && LETTERS==false){
+  random = Math.round(Math.random())
+  console.log(random)
+  switch(random){
+  case 0:answer =list.numbers[Math.floor(Math.random()*list.numbers.length)]
+  return answer;
+  break;
+  case 1:answer =list.special[Math.floor(Math.random()*list.special.length)]
+  return answer;
+  }}
 
+  if (number==true && special == false && letters == true && LETTERS==false){
+  random = Math.round(Math.random())
+  console.log(random)
+  switch(random){
+  case 0: answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
+  return answer;
+  break;
+  case 1:answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+  return answer
+  }}
 
+  if (number==true && special == false && letters == false && LETTERS==true){
+  random = Math.round(Math.random())
+  console.log(random)
+  switch(random){
+  case 0: answer = list.numbers[Math.floor(Math.random()*list.numbers.length)]
+  return answer;
+  break;
+  case 1:answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+  return answer
+  }}
 
+  if (number==false && special == true && letters == true && LETTERS==false){
+  random = Math.round(Math.random())
+  console.log(random)
+  switch(random){
+  case 0: answer = list.special[Math.floor(Math.random()*list.special.length)]
+  return answer;
+  break;
+  case 1: answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+  return answer
+  }}
 
+  if (number==false && special == true && letters == false && LETTERS==true){
+  random = Math.round(Math.random())
+  console.log(random)
+  switch(random){
+  case 0: answer = list.special[Math.floor(Math.random()*list.special.length)]
+  return answer;
+  break;
+  case 1: answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+  return answer
+  }}
+
+  if (number==false && special == false && letters == true && LETTERS==true){
+  random = Math.round(Math.random())
+  console.log(random)
+  switch(random){
+  case 0: answer = list.letters[Math.floor(Math.random()*list.letters.length)]
+  return answer;
+  break;
+  case 1: answer = list.LETTERS[Math.floor(Math.random()*list.LETTERS.length)]
+    return answer
+  }}
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -207,21 +221,30 @@ var password= ""
 while (repeater<= passwordSize) {
   
   repeater+=1
-  if (count == 4){
-    selector= pickFour()
+  if (count == 1) {
+    selector=pickOne(number, special, letters, LETTERS);
     console.log("The character was " + selector);
     password +=selector;
-    console.log(password);   
-} 
-//  if (count == 1) {
-//    switchNumber= pickOne(number, special, letters, LETTERS)
-//    console.log("Switch number is " + switchNumber)
+    console.log(password);}
+  if (count == 2) {
+    selector=pickTwo(number, special, letters, LETTERS);
+    console.log("The character was " + selector);
+    password +=selector;
+    console.log(password);}
+  // if (count == 3) {
+  //   selector=pickThree(number, special, letters, LETTERS);
+  //   console.log("The character was " + selector);
+  //   password +=selector;
+  //   console.log(password);}
 
-//  }
-}
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  if (count == 4){
+    selector= pickFour();
+    console.log("The character was " + selector);
+    password +=selector;
+    console.log(password);} 
+}  
+var passwordText = document.querySelector("#password");
+passwordText.value = password;
 //integer used to be generatePassword() password
 }
 
