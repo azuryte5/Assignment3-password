@@ -5,8 +5,10 @@ Github repository: https://github.com/azuryte5/Assignment3-password
 <img src="assets/images/password-challenge.png" alt="Image of my generator with some code as a teaser" width="500">
 
 # unique comments
-This challenge took me over 20hours to understand, digest and compute. I understood the deciding between 16 possible user interactions was the 
-toughest part. Most of my time was then spent on how to coordinate the functions to align 
+* This challenge took me over 20hours to understand, digest and compute. I understood the deciding between 16 possible user interactions was the 
+toughest part. Most of my time was then spent on how to coordinate the functions to align
+* I noticed that my pickFour was failing when password count was low (8) at returning a character from each category 30%. Made var balance to adjust
+* PickThree fails about 12% (1/8) of the time (on password length of 8) but I had to move on. If it happens just reroll and it will work.
 
 ## User Story
 

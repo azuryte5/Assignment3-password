@@ -218,9 +218,8 @@ var pickThree = function (number, special, letters, LETTERS) {
 }
 
 // pickFour will return a random character from all four prompts 25% chance per character in password
-var pickFour = function () {  
+var pickFour = function (random) {  
   answer = 0
-  random = Math.floor(Math.random()* 4) 
   switch (random){
   case 0:
     console.log("case number")
@@ -303,7 +302,8 @@ function writePassword() {
 var selector= ""
 var repeater=0
 var password= ""
-while (repeater<= passwordSize) {
+var balance=0
+while (repeater<= passwordSize-1) {
   repeater+=1
   if (count == 1) {
     selector=pickOne(number, special, letters, LETTERS);
@@ -324,7 +324,10 @@ while (repeater<= passwordSize) {
   console.log(password);}
 
   if (count == 4){
-    selector= pickFour();
+    balance+=1
+    console.log(balance);
+    if (balance === 4){balance =0};
+    selector= pickFour(balance);
     //console.log("The character was " + selector);
     password +=selector;
     console.log(password);} 
